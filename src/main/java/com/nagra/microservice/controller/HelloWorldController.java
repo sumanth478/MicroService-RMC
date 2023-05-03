@@ -29,7 +29,7 @@ public class HelloWorldController
 
         return characterResponse;
     }*/
-    @GetMapping("/characters")
+    @GetMapping("/api/v1/characters/")
     public List<CharacterResponse> getCharacterByName(@RequestParam String name){
         System.out.println(name);
         RestTemplate restTemplate=new RestTemplate();
