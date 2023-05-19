@@ -1,6 +1,9 @@
 package com.nagra.microservice.controller;
 
 public class CharacterResponse {
+    private String image;
+    private int id;
+    private String name;
     public int getId() {
         return id;
     }
@@ -9,8 +12,7 @@ public class CharacterResponse {
         this.id = id;
     }
 
-    private int id;
-    private String name;
+
 
     public String getName() {
         return name;
@@ -56,7 +58,7 @@ public class CharacterResponse {
         this.image = image;
     }
 
-    private String image;
+
 
     public CharacterResponse() {
     }

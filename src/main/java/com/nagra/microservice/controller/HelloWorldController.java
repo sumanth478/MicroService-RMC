@@ -1,5 +1,7 @@
 package com.nagra.microservice.controller;
 import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -10,9 +12,11 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @RestController
 public class HelloWorldController
 {
+    private final Logger logger = LoggerFactory.getLogger(HelloWorldController.class);
     private final String API_URL = "https://rickandmortyapi.com/api/character";
   //  @GetMapping("/characters/{id}")
    // public CharacterResponse getCharacter(@PathVariable int id) {
@@ -31,10 +35,10 @@ public class HelloWorldController
     }*/
     @GetMapping("/api/v1/characters/")
     public List<CharacterResponse> getCharacterByName(@RequestParam String name){
-        System.out.println(name);
+      //  System.out.println(name);
         RestTemplate restTemplate=new RestTemplate();
         String url=API_URL + "?name=" +name;
-        System.out.println(url);
+       // System.out.println(url);
          ResponseEntity<CharacterListResponse> responseEntity=restTemplate.getForEntity(url,CharacterListResponse.class);
          CharacterListResponse characterListResponse=responseEntity.getBody();
 
@@ -49,7 +53,7 @@ public class HelloWorldController
 
             characters.add(characterResponse);
         }
-
+        logger.info("Retrieved {} character(s) successfully for name: {}", characters.size(), name);
         return characters;
 
     }
